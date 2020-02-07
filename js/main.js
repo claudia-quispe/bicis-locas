@@ -2,72 +2,91 @@ function validateForm(){
 
 	//*DEFINIR VARIABLES//*
 	//* en html label for="name".. //* 
-	var nombre = document.getElementById("name").value;
-	var apellido = document.getElementById("lastname").value;
-	var email = document.getElementById("input-email").value;
-	var password = document.getElementById("input-password").value;
-	var tipo_bicicleta=document.getElementsByTagName('select')[0].value;
+	var nombre = document.getElementById("name");
+	var apellido = document.getElementById("lastname");
+	var email = document.getElementById("input-email");
+	var password = document.getElementById("input-password");
+	var tipo_bicicleta=document.getElementsByTagName('select')[0];
 
 	//* == : compara igualdad //*
 	//* || : ó //*
 	//* != : es distinto a..//*
+	// ! = negacion //*
 
 	//*DIFINIR CONDICIONES//*
+
+	//*SE CREA UNA FUNCION DE ALERTA PARA TODAS LAS VARIABLES //*
+
+	//*function alertar(mensaje, elem) {
+	//*var span = document.createElement('span');
+	//*span.innerHTML = mensaje;
+	//*elem.parentNode.appendChild(span);
+	//*}
+
+	//* SE CREA FUNCION PARA ELIMINAR LAS ALERTAS //*
+	function alertar(mensaje, elem) {
+		var span = element.parentNode.children[2];
+		if (!span) { // si span no existe, entonces lo creo
+			var span = document.createElement('span');
+		}
+		span.innerHTML = mensaje;
+		elem.parentNode.appendChild(span);
+	}
+
+	function remove(element){
+		var span = element.parentNode.children[2];
+		if(!span) {return};
+		element.parentNode.removeChild(span);
+	}
+	//* appendChild = agregar un hijo //*
+
+	//* VALIDAR UN NOMBRE//*
+
+
+
 	//* NOMBRE //*
-	if(nombre == ""){
-		alert("Hey, ingresa tu nombre!");
-		return;
+	if(nombre.value.length == 0){
+		alertar('Debes escribir un nombre', nombre);
 	}
-	if(!nombre.match(/^[a-zA-Z]+$/)){
-		alert("Sólo caracteres de la A a Z");
-		return;
+	else if(!nombre.value.match(/^[a-zA-Z]+$/)){
+		alertar('El nombre solo debe contener letras', nombre);
 	}
-	if(nombre[0]!=nombre[0].toUpperCase()){
-		alert("La primera letra debe ser en mayuscula");
-		return;
+	else if(nombre.value[0]!=nombre.value[0].toUpperCase()){
+		alertar('La primera letra debe ser en mayuscula', nombre);
 	}
 
 	//* APELLIDO //*
-	if(apellido == ""){
-		alert("Como sabremos quien eres?, ingresa tu apellido");
-		return;
+	if(apellido.value.length == 0){
+		alertar('Como sabremos quien eres?, ingresa tu apellido', apellido);
 	}
-	if(!apellido.match(/^[a-zA-Z]+$/)){
-		alert("Solo caracteres de la A a la Z");
-		return;
+	else if(!apellido.value.match(/^[a-zA-Z]+$/)){
+		alertar('Solo caracteres de la A a la Z', apellido);
 	}
-	if(apellido[0]!=apellido[0].toUpperCase()){
-		alert("Tu apellido debe comenzar en mayuscula");
-		return;
+	else if(apellido.value[0]!=apellido.value[0].toUpperCase()){
+		alertar('Tu apellido debe comenzar en mayuscula', apellido);
 	}
 
 	//* EMAIL //*
-	if(email == ""){
-		alert("Ingresa tu correo");
-		return;	
+	if(email.value.length == 0){
+		alertar('Ingresa tu correo', email);
 	}
-	if(!email.match(/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/)){
-		alert("Ingresa un formato válido Ej: email@domain.com");
-		return;
+	else if(!email.value.match(/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/)){
+		alertar('Ingresa un formato válido Ej: email@domain.com', email);
 	}
 
 	//* PASSWORD //*
-	if(password == ""){
-		alert("No te olvides del Password");
-		return;	
+	if(password.value.length == 0){
+		alertar('No te olvides del Password', password);
 	}
-	if(password.length <6){
-		alert("Password solo debe contener al menos 6 caracteres");
-		return;
+	else if(password.value.length <6){
+		alertar('Password solo debe contener al menos 6 caracteres', password);
 	}
-	if(!password.lenght == "password" || "123456" || "098754"){
-		alert("Ingresa un password correcto");
-		return;
+	else if(!password.value.lenght == "password" || "123456" || "098754"){
+		alertar('Ingresa un password correcto', password);
 	}
 
-	//* BICICLETAS //*
-	if(tipo_bicicleta == ""){
-		alert("Escoge una de las opciones");
-		return;
+	//* TIPO_BICICLETAS //*
+	if (tipo_bicicleta.value == null || tipo_bicicleta.value == 0){
+		alertar('Escoge una de las opciones', tipo_bicicleta);
 	}
 }
